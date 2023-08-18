@@ -31,6 +31,6 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 3',
     ],
-    setup_requires=["cython", "numpy"],
-    install_requires=["cython", "numpy"],
+    setup_requires=["Cython", "numpy"],
+    install_requires=["Cython", "numpy"],
 )
