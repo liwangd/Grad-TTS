@@ -32,10 +32,12 @@ jobs:
         python-version: '3.x'
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip setuptools wheel
-        pip install build twine Cython numpy
+        python -m pip install --upgrade pip 
+        pip install Cython numpy
+    - name: Install cibuildwheel
+      run: python -m pip install cibuildwheel==2.15.0
     - name: Build wheels
-      uses: pypa/cibuildwheel@v2.15.0
+      run: python -m cibuildwheel --output-dir wheelhouse
     - name: Publish package
       env:
         TWINE_USERNAME: __token__
