@@ -1,5 +1,5 @@
 [build-system]
-requires = ["cibuildwheel >= 2.3.0"]
+requires = ["cibuildwheel >= 2.3.0", "wheel", "Cython", "numpy"]
 build-backend = "cibuildwheel.backend"
 
 [[project]]
