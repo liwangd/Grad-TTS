@@ -13,6 +13,9 @@ extensions = cythonize("grad_tts/model/monotonic_align/*.pyx")
 for ext_module in extensions:
     ext_module.include_dirs.append(np.get_include())
 
+with open("README.md", "r") as f:
+    long_description = f.read()
+
 setup(
     name='grad_tts',
     version='0.0.1',
@@ -23,6 +26,8 @@ setup(
     ext_modules = extensions,
     author='Li Wang',
     author_email='li@liwang.info',
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     description='A fork of the official implementation of the Grad-TTS model.',
     url='https://github.com/liwangd/Grad-TTS',
     classifiers=[
