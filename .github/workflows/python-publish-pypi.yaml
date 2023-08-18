@@ -17,9 +17,12 @@ permissions:
   contents: read
 
 jobs:
-  deploy:
-
-    runs-on: ubuntu-latest
+  build_wheels:
+    name: Build wheels on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-20.04, ubuntu-22.04, windows-2019, macOS-11, macOS-12]
 
     steps:
     - uses: actions/checkout@v3
@@ -31,14 +34,13 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install setuptools wheel twine Cython numpy
-    - name: Build manylinux Python wheels
-      uses: RalfG/python-wheels-manylinux-build@v0.7.1-manylinux2014_x86_64
-      with:
-        python-versions: 'cp39-cp39 cp310-cp310 cp311-cp311'
-        build-requirements: 'cython numpy'
+    - name: Install cibuildwheel
+      run: python -m pip install cibuildwheel==2.15.0
+    - name: Build wheels
+      run: python -m cibuildwheel --output-dir wheelhouse
     - name: Publish package
       env:
         TWINE_USERNAME: __token__
         TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
       run: |
-        twine upload dist/*-manylinux*.whl
+        twine upload ./wheelhouse/*.whl
