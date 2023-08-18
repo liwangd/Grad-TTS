@@ -18,9 +18,9 @@ setup(
     version='0.0.1',
     packages=find_packages(),
     package_data = {
-        '': ['cmu_dictionary', 'hifigan-config.json']
+        '': ['cmu_dictionary', 'hifigan-config.json'],
     },
-    ext_modules = cythonize(extensions),
+    ext_modules = extensions,
     author='Li Wang',
     author_email='li@liwang.info',
     description='A fork of the official implementation of the Grad-TTS model.',

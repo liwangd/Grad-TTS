@@ -1,0 +1,7 @@
+[build-system]
+requires = ["cibuildwheel >= 2.3.0"]
+build-backend = "cibuildwheel.backend"
+
+[[project]]
+name = "grad_tts"
+requires = ["Cython", "numpy"]
