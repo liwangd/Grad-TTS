@@ -35,7 +35,7 @@ jobs:
           python -m pip install --upgrade pip 
           pip install Cython numpy
       - name: Build wheels
-        uses: pypa/cibuildwheel@v2.15.0
+        uses: pypa/cibuildwheel@v2.11.4
         with:
           python-versions: 'cp39-cp39 cp310-cp310 cp311-cp311'
           build-requirements: 'Cython numpy'
