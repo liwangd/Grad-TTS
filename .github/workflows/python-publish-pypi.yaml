@@ -40,8 +40,8 @@ jobs:
           pip install Cython numpy twine
       - name: Install cibuildwheel
         run: python -m pip install cibuildwheel==2.13.1 Cython numpy
-      # - name: Build wheels
-      #   run: python -m cibuildwheel --output-dir wheelhouse
+      - name: Build wheels
+        run: python -m cibuildwheel --output-dir wheelhouse
       - name: Build source distribution
         run: python setup.py sdist
       - name: Publish package
@@ -49,5 +49,5 @@ jobs:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
         run: |
-          # twine upload --skip-existing ./wheelhouse/*.whl
+          twine upload --skip-existing ./wheelhouse/*.whl
           twine upload --skip-existing ./dist/*
