@@ -18,10 +18,10 @@ with open("README.md", "r") as f:
 
 setup(
     name='grad_tts',
-    version='0.0.2',
+    version='0.0.3',
     packages=find_packages(),
     package_data = {
-        '': ['cmu_dictionary', 'hifigan-config.json'],
+        '': ['cmu_dictionary', 'hifigan-config.json', 'core.pyx'],
     },
     ext_modules = extensions,
     author='Li Wang',
