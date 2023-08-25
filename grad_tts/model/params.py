@@ -6,7 +6,7 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # MIT License for more details.
 
-from .model.utils import fix_len_compatibility
+from grad_tts.model.utils import fix_len_compatibility
 
 
 # data parameters

@@ -1,15 +1,12 @@
-from grad_tts import params
 import numpy as np
 import os
-import json
-from grad_tts.model import GradTTS
+from grad_tts.model import GradTTS, params
 import argparse
 import torch
 from grad_tts.text.symbols import symbols
 from grad_tts.text import text_to_sequence, cmudict
 from grad_tts.utils import intersperse
 from scipy.io.wavfile import write
-from grad_tts.model.hifi_gan.env import AttrDict
 from grad_tts.model.hifi_gan.models import Generator as HiFiGAN
 
 if __name__ == '__main__':
@@ -55,5 +52,5 @@ if __name__ == '__main__':
             y_enc, y_dec, attn = generator.forward(x, x_lengths, n_timesteps=args.timesteps, temperature=1.5,
                                                    stoc=False, spk=None, length_scale=0.91)
             print(y_dec)
-            audio = (vocoder.forward(y_dec).cpu().squeeze().clamp(-1, 1).numpy() * 32768).astype(np.int16)
+            audio = (vocoder.forward(y_dec).cpu().squeeze().clamp(-1, 1).numpy() * 32767).astype(np.int16)
             write(os.path.join(args.outdir, f'sample_{i}.wav'), 22050, audio)

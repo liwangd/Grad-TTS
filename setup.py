@@ -18,7 +18,7 @@ with open("README.md", "r") as f:
 
 setup(
     name='grad_tts',
-    version='0.0.3',
+    version='0.0.4',
     packages=find_packages(),
     package_data = {
         '': ['cmu_dictionary', 'hifigan-config.json', 'core.pyx'],

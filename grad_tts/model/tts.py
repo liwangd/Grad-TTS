@@ -16,12 +16,19 @@ from .base import BaseModule
 from .text_encoder import TextEncoder
 from .diffusion import Diffusion
 from .utils import sequence_mask, generate_path, duration_loss, fix_len_compatibility
+from . import params
+from ..text.symbols import symbols
 
 
 class GradTTS(BaseModule):
-    def __init__(self, n_vocab, n_spks, spk_emb_dim, n_enc_channels, filter_channels, filter_channels_dp, 
-                 n_heads, n_enc_layers, enc_kernel, enc_dropout, window_size, 
-                 n_feats, dec_dim, beta_min, beta_max, pe_scale):
+    def __init__(self, n_vocab=len(symbols) + 1, n_spks=params.n_spks,
+                 spk_emb_dim=params.spk_emb_dim, n_enc_channels=params.n_enc_channels,
+                 filter_channels=params.filter_channels,
+                 filter_channels_dp=params.filter_channels_dp, n_heads=params.n_heads,
+                 n_enc_layers=params.n_enc_layers, enc_kernel=params.enc_kernel,
+                 enc_dropout=params.enc_dropout, window_size=params.window_size,
+                 n_feats=params.n_feats, dec_dim=params.dec_dim, beta_min=params.beta_min,
+                 beta_max=params.beta_max, pe_scale=params.pe_scale):
         super(GradTTS, self).__init__()
         self.n_vocab = n_vocab
         self.n_spks = n_spks
